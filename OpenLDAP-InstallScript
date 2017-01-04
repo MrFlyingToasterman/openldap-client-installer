@@ -1,5 +1,6 @@
 #!/bin/bash
-echo 'Welcome to the OpenLDAP Autoinstaller 2k17 by Pascal Peinecke (c)';
+echo 'Welcome to the OpenLDAP Autoinstaller 2k17 by Pascal Peinecke & Darius Musiolik';
+echo 'This is free (as in freedom) software! Fork us on GitHub: /MrFlyingToasterman/openldap-client-installer';
 echo 'THIS SCRIPT HAS TO BE RUN AS ROOT!';
 read -n 1 -s -p "Press any key to continue"
 echo 'Copying nsswitch.conf ...'; cp ./nsswitch.conf /etc/nsswitch.conf &> /dev/null;
