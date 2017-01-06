@@ -1,19 +1,30 @@
 #!/bin/bash
-echo 'Welcome to the OpenLDAP Autoinstaller 2k17 by Pascal Peinecke & Darius Musiolik';
-echo 'This is free (as in freedom) software! Fork us on GitHub: /MrFlyingToasterman/openldap-client-installer';
-echo 'THIS SCRIPT HAS TO BE RUN AS ROOT!';
+echo "Welcome to the OpenLDAP Autoinstaller 2k17 by Pascal Peinecke & Darius Musiolik"
+echo "This is free (as in freedom) software! Fork us on GitHub: /MrFlyingToasterman/openldap-client-installer"
+echo "THIS SCRIPT HAS TO BE RUN AS ROOT!"
 read -n 1 -s -p "Press any key to continue"
-echo 'Copying nsswitch.conf ...'; cp ./nsswitch.conf /etc/nsswitch.conf &> /dev/null;
-echo 'Installing LDAP-CLient Utils...'; dnf install openldap openldap-clients pam_ldap nss-pam-ldapd nss_ldap nscd nfs-utils
-echo 'Enabling the Nameservice Caching Daemon nscd...'; systemctl enable nscd.service #&> /dev/null;
-echo 'Copying sssd.conf'; cp ./sssd.conf /etc/sssd/sssd.conf &> /dev/null;
-echo 'Copying nscd.conf ...'; cp ./nscd.conf /etc/nscd.conf &> /dev/null;
-echo 'Copying nslcd.conf ...'; cp ./nslcd.conf /etc/nslcd.conf &> /dev/null;
-echo 'Copying ldap.conf ...'; cp ./ldap.conf /etc/openldap/ldap.conf &> /dev/null;
-echo 'Setting up authconfig and do the magic stuff with pink fluffy unicorns...'; authconfig --enableforcelegacy --update &> /dev/null; authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update &> /dev/null;
-echo 'Setting up Samba Share in fstab ...';
+echo "Copying nsswitch.conf ..." 
+echo "" 
+cp ./nsswitch.conf /etc/nsswitch.conf
+echo "Installing LDAP-CLient Utils..."
+dnf install openldap openldap-clients pam_ldap nss-pam-ldapd nss_ldap nscd nfs-utils
+echo "Enabling the Nameservice Caching Daemon nscd..."
+ systemctl enable nscd.service
+echo "Copying sssd.conf"
+cp ./sssd.conf /etc/sssd/sssd.conf
+echo "Copying nscd.conf ..."
+cp ./nscd.conf /etc/nscd.conf
+echo "Copying nslcd.conf ..."
+cp ./nslcd.conf /etc/nslcd.conf
+echo "Copying ldap.conf ..."
+cp ./ldap.conf /etc/openldap/ldap.conf
+echo "Setting up authconfig and do the magic stuff with pink fluffy unicorns..."
+authconfig --enableforcelegacy --update &> /dev/null; authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update
+echo "Setting up Samba Share in fstab ...";
 mkdir /home/OpenLDAP
-echo "192.168.88.20:/OpenLDAP /home/OpenLDAP nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab #&> /dev/null;
-echo 'Disabling GDM Userlist....Thats the ticket!'; mkdir -p /etc/dconf/db/gdm.d; cp ./00-login-screen /etc/dconf/db/gdm.d/00-login-screen &> /dev/null; dconf update;
-echo 'Finished! Pease reboot NOW!';
+echo "192.168.88.20:/OpenLDAP /home/OpenLDAP nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab
+echo "Disabling GDM Userlist....Thats the ticket!"
+mkdir -p /etc/dconf/db/gdm.d; cp ./00-login-screen /etc/dconf/db/gdm.d/00-login-screen
+dconf update
+echo "Finished! Pease reboot NOW!"
 exit 0
