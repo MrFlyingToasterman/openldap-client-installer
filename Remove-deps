@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Please notice that the debs may conain needed stuff for your system!"
+echo "You should read them carefully."
+dnf remove openldap openldap-clients pam_ldap nss-pam-ldapd nss_ldap nscd nfs-utils
