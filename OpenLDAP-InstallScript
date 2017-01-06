@@ -18,13 +18,16 @@ echo "Copying nslcd.conf ..."
 cp nslcd.conf /etc/nslcd.conf
 echo "Copying ldap.conf ..."
 cp ldap.conf /etc/openldap/ldap.conf
-echo "Setting up authconfig and do the magic stuff with pink fluffy unicorns..."
-authconfig --enableforcelegacy --update &> /dev/null; authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update
+echo "Setting up authconfig and do the magic stuff..."
+authconfig --enableforcelegacy --update
+authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update
 echo "Setting up Samba Share in fstab ...";
 mkdir /home/OpenLDAP
 echo "192.168.88.20:/OpenLDAP /home/OpenLDAP nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab
 echo "Disabling GDM Userlist....Thats the ticket!"
 mkdir -p /etc/dconf/db/gdm.d; cp ./00-login-screen /etc/dconf/db/gdm.d/00-login-screen
 dconf update
+echo "Notice: If you are going to use this setup with GDM. You need to have at least 1 non-root Accound on your system."
+echo ""
 echo "Finished! Pease reboot NOW!"
 exit 0
