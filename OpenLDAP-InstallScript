@@ -5,19 +5,19 @@ echo "THIS SCRIPT HAS TO BE RUN AS ROOT!"
 read -n 1 -s -p "Press any key to continue"
 echo "Copying nsswitch.conf ..." 
 echo "" 
-cp ./nsswitch.conf /etc/nsswitch.conf
+cp nsswitch.conf /etc/nsswitch.conf
 echo "Installing LDAP-CLient Utils..."
 dnf install openldap openldap-clients pam_ldap nss-pam-ldapd nss_ldap nscd nfs-utils
 echo "Enabling the Nameservice Caching Daemon nscd..."
  systemctl enable nscd.service
 echo "Copying sssd.conf"
-cp ./sssd.conf /etc/sssd/sssd.conf
+cp sssd.conf /etc/sssd/sssd.conf
 echo "Copying nscd.conf ..."
-cp ./nscd.conf /etc/nscd.conf
+cp nscd.conf /etc/nscd.conf
 echo "Copying nslcd.conf ..."
-cp ./nslcd.conf /etc/nslcd.conf
+cp nslcd.conf /etc/nslcd.conf
 echo "Copying ldap.conf ..."
-cp ./ldap.conf /etc/openldap/ldap.conf
+cp ldap.conf /etc/openldap/ldap.conf
 echo "Setting up authconfig and do the magic stuff with pink fluffy unicorns..."
 authconfig --enableforcelegacy --update &> /dev/null; authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update
 echo "Setting up Samba Share in fstab ...";
