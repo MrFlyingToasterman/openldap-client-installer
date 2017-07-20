@@ -6,7 +6,7 @@ Created by Pascal Peinecke and Darius Musiolik.
 Tested in a small business environment with Fedora 25. <br>
 We are using a Firewall with the IP 192.168.88.1 and a running OpenLDAP Server. <br>
 We are using a NAS with a NFS for our homefolders too. This is on 192.168.88.20. <br>
-For the administration of OpenLDAP we recomment phpldapadmin. <br>
+For the administration of OpenLDAP we recommend phpldapadmin. <br>
 This script will ONLY setup the client part. <br>
 <br>
 Dont forget to cross fingers while running. <br>
