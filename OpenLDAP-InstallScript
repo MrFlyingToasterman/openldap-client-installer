@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Welcome to the OpenLDAP Autoinstaller 2k17 by Pascal Peinecke & Darius Musiolik"
+echo "Welcome to the OpenLDAP Autoinstaller 2k18 by Pascal Peinecke & Darius Musiolik"
 echo "This is free (as in freedom) software! Fork us on GitHub: /MrFlyingToasterman/openldap-client-installer"
 echo "THIS SCRIPT HAS TO BE RUN AS ROOT!"
 read -n 1 -s -p "Press any key to continue"
@@ -23,7 +23,7 @@ authconfig --enableforcelegacy --update
 authconfig --enableldap --enableldapauth --ldapserver="192.168.88.1" --ldapbasedn="dc=moonbase,dc=richter" --update
 echo "Setting up Samba Share in fstab ...";
 mkdir /home/OpenLDAP
-echo "192.168.88.20:/OpenLDAP /home/OpenLDAP nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab
+echo "192.168.88.1:/ldaphome /home/ldaphome nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab
 echo "Disabling GDM Userlist....Thats the ticket!"
 mkdir -p /etc/dconf/db/gdm.d; cp ./00-login-screen /etc/dconf/db/gdm.d/00-login-screen
 dconf update
