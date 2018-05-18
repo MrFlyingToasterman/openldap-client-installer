@@ -1,11 +1,11 @@
 # openldap-client-installer
-A (testing) OpenLDAP Client installer designed for Fedora (25) <br>
+A (testing) OpenLDAP Client installer redesigned for Debian (9) <br>
 Created by Pascal Peinecke and Darius Musiolik.
 
 # Testing
-Tested in a small business environment with Fedora 25. <br>
+Tested in a medium business environment with Debian 9. <br>
 We are using a Firewall with the IP 192.168.88.1 and a running OpenLDAP Server. <br>
-We are using a NAS with a NFS for our homefolders too. This is on 192.168.88.20. <br>
+We are using a NFS for our homefolders too. This is on 192.168.88.1. <br>
 For the administration of OpenLDAP we recommend phpldapadmin. <br>
 This script will ONLY setup the client part. <br>
 <br>

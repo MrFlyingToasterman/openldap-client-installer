@@ -1,35 +1,21 @@
 #!/bin/bash
-echo "Welcome to the OpenLDAP Autoinstaller 2k18 by Pascal Peinecke & Darius Musiolik"
+echo "Welcome to the OpenLDAP Autoinstaller 2k18 V2 by Pascal Peinecke & Darius Musiolik"
 echo "This is free (as in freedom) software! Fork us on GitHub: /MrFlyingToasterman/openldap-client-installer"
 echo "THIS SCRIPT HAS TO BE RUN AS ROOT!"
+echo "Optimized to run in a business env with Debian 9"
 read -n 1 -s -p "Press any key to continue"
 apt update
 echo "Installing NFS-Utils"
 apt -y install nfs-common
-echo "Copying nsswitch.conf ..."
-cp configs/nsswitch.conf /etc/nsswitch.conf
+#echo "Copying nsswitch.conf ..."
+#cp configs/nsswitch.conf /etc/nsswitch.conf
 echo "Installing LDAP-CLient Utils..."
-apt -y install libnss-ldap libpam-ldap ldap-utils nfs-utils nscd
-echo "Enabling the Nameservice Caching Daemon nscd..."
-systemctl enable nscd.service
-echo "Copying sssd.conf"
-cp configs/sssd.conf /etc/sssd/sssd.conf
-echo "Copying nscd.conf ..."
-cp configs/nscd.conf /etc/nscd.conf
-echo "Copying nslcd.conf ..."
-cp configs/nslcd.conf /etc/nslcd.conf
-echo "Copying ldap.conf ..."
-cp configs/ldap.conf /etc/ldap/ldap.conf
-echo "Copying common-password"
-cp configs/common-password /etc/pam.d/common-password
-echo "Copying common-session"
-cp configs/common-session /etc/pam.d/common-session
-echo "Setting up Samba Share in fstab ..."
+apt -y install libnss-ldap libpam-ldap ldap-utils nfs-utils
+echo "Setting up NFS Share in fstab ... (Please change the code here to use it for your own Network!)"
 mkdir /home/ldaphome
 echo "192.168.88.1:/vault/ldaphome /home/ldaphome nfs auto,rw,defaults,nofail 0 0" >> /etc/fstab
-echo "Disabling GDM Userlist....Thats the ticket!"
+echo "Disabling GDM Userlist."
 cp configs/greeter.dconf-defaults /etc/gdm3/greeter.dconf-defaults
-dconf update
 echo "Notice: If you are going to use this setup with GDM. You need to have at least 1 non-root Accound on your system."
 echo "Finished! Pease reboot NOW!"
 exit 0
